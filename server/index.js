@@ -7,7 +7,7 @@ const db = require('./db/queries.js');
 app.use(bodyParser.json());
 
 
-
+app.get('/', db.getAll)
 
 
 app.listen(port, () => {
