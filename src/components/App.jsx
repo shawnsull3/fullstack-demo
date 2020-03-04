@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from './Nav.jsx';
 import BugTile from './BugTile.jsx';
-import exampleData from '../example-data/exampleData';
+import Modal from './Modal.jsx'; 
 
 import '../styles/App.scss';
 
@@ -11,8 +11,11 @@ class App extends React.Component {
     this.state = {
       filter: 'None',
       bugs: null,
+      showModal: false
     };
     this.filterHandler = this.filterHandler.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
   filterHandler(filter) {
@@ -28,11 +31,23 @@ class App extends React.Component {
       })
   }
 
+  showModal() {
+    this.setState({ showModal: true });
+  };
+
+  hideModal() {
+    this.setState({ showModal: false });
+  };
+
   
   render() {
     return (
       <div>
-        <button>Add Bug</button>
+        <button onClick={this.showModal}>Add Bug</button>
+        <Modal show={this.state.showModal} handleClose={this.hideModal}>
+          <p>Modal</p>
+          <p>Data</p>
+        </Modal>
         <table>
           <Nav filterHandler={this.filterHandler}/>
           {this.state.bugs ? 
