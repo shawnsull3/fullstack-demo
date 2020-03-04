@@ -14,12 +14,11 @@ const getAll = (req, res) => {
 }
 
 const createBug = (req, res) => {
-    const { description, reporter, createdon, assignedto, threatlevel } = req.body;
-    const values = [description, reporter, createdon, assignedto, threatlevel];
-    console.log(values);
-    pool.query('INSERT INTO bugs (description, reporter, createdon, assignedto, threatlevel) VALUES ($1, $2, $3, $4, $5)', values, (error, results) => {
+    const { bugDescription, reportedBy, createdDate, assignedTo, threatLevel } = req.body;
+    const values = [bugDescription, reportedBy, createdDate, assignedTo, threatLevel];
+    pool.query('INSERT INTO bugs ("bugDescription", "reportedBy", "createdDate", "assignedTo", "threatLevel") VALUES ($1, $2, $3, $4, $5)', values, (error, results) => {
         if (error) {throw error}
-        res.status(201).send(`${description} bug created`)
+        res.status(201).send(`${bugDescription} bug created`)
     });
 }
 
