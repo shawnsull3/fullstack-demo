@@ -19,6 +19,7 @@ class App extends React.Component {
     this.setState({ filter });
   }
 
+  
   render() {
     return (
       <table>
@@ -26,16 +27,29 @@ class App extends React.Component {
           filterHandler={this.filterHandler}
         />
         {this.state.bugs.map((bug) => (
-          <BugTile
-            bugName={bug.bugName}
-            bugDescription={bug.bugDescription}
-            reportedBy={bug.reportedBy}
-            createdDate={bug.createdDate}
-            assignedTo={bug.assignedTo}
-            threatLevel={bug.threatLevel}
-            key={bug.bugName}
-          />
+          this.state.filter === 'None' ? (
+            <BugTile
+              bugName={bug.bugName}
+              bugDescription={bug.bugDescription}
+              reportedBy={bug.reportedBy}
+              createdDate={bug.createdDate}
+              assignedTo={bug.assignedTo}
+              threatLevel={bug.threatLevel}
+              key={bug.bugName}
+            />
+          ) : bug.threatLevel === this.state.filter ? (
+            <BugTile
+              bugName={bug.bugName}
+              bugDescription={bug.bugDescription}
+              reportedBy={bug.reportedBy}
+              createdDate={bug.createdDate}
+              assignedTo={bug.assignedTo}
+              threatLevel={bug.threatLevel}
+              key={bug.bugName}
+            />
+          ) : null
         ))}
+
       </table>
     );
   }
