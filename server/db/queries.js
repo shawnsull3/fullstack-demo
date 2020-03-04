@@ -6,7 +6,6 @@ const pool = new Pool ({
     port: 5432
 })
 
-// Create a method to send back all bug reports in the DB.
 const getAll = (req, res) => {
     pool.query('SELECT * FROM bugs', (error, results) => {
         if (error) { throw error}
@@ -14,12 +13,18 @@ const getAll = (req, res) => {
     })
 }
 
-// Create a method to add a new bug report to the DB.
-// createBug() {
-//     return pool.query('INSERT INTO bugs () VALUES ()');
-// }
+const createBug = (req, res) => {
+    const { description, reporter, createdon, assignedto, threatlevel } = req.body;
+    const values = [description, reporter, createdon, assignedto, threatlevel];
+    console.log(values);
+    pool.query('INSERT INTO bugs (description, reporter, createdon, assignedto, threatlevel) VALUES ($1, $2, $3, $4, $5)', values, (error, results) => {
+        if (error) {throw error}
+        res.status(201).send(`${description} bug created`)
+    });
+}
 
 module.exports = {
     pool,
     getAll,
+    createBug
 }

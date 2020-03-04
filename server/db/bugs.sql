@@ -8,9 +8,9 @@ CREATE TABLE bugs (
     id SERIAL PRIMARY KEY,
     description text,
     reporter text,
-    createdOn text,  --change to auto generate later
-    assignedTo text,
-    threatLevel text
+    createdon text,  --change to auto generate later
+    assignedto text,
+    threatlevel text
 );
 
 --fill in data

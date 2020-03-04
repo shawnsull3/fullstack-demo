@@ -8,6 +8,7 @@ app.use(bodyParser.json());
 
 
 app.get('/', db.getAll)
+app.post('/', db.createBug)
 
 
 app.listen(port, () => {
