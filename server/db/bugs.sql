@@ -5,12 +5,12 @@ CREATE DATABASE bugs;
 \c bugs;
 
 CREATE TABLE bugs (
-    id SERIAL PRIMARY KEY,
-    description text,
-    reporter text,
-    createdon text,  --change to auto generate later
-    assignedto text,
-    threatlevel text
+    bugName SERIAL PRIMARY KEY,
+    bugDescription text,
+    reportedBy text,
+    createdDate text,  --change to auto generate later
+    assignedTo text,
+    threatLevel text
 );
 
 --fill in data
