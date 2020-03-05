@@ -40,7 +40,6 @@ class App extends React.Component {
   };
 
   addBug(newBug) {
-    console.log(newBug)
     fetch('http://localhost:3000/', {
       method: 'POST',
       headers: {
