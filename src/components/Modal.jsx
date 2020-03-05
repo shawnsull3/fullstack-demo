@@ -14,7 +14,6 @@ class Modal extends React.Component {
 
    handleChange(e) {
     e.preventDefault;
-    console.log([e.target.id]);
     this.setState({
         [e.target.id]: e.target.value
     })
@@ -43,7 +42,7 @@ class Modal extends React.Component {
                     </tr>
                 </tbody>
               </table>
-              <button onClick={this.props.handleClose}>close</button>
+              <button onClick={() => {this.props.handleClose(), this.props.addBug(this.state)} }>close</button>
             </section>
           </div>
           : null

@@ -16,6 +16,7 @@ class App extends React.Component {
     this.filterHandler = this.filterHandler.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.addBug = this.addBug.bind(this);
   }
 
   filterHandler(filter) {
@@ -26,7 +27,6 @@ class App extends React.Component {
     fetch('http://localhost:3000/')
       .then(data => data.json())
       .then(data => {
-        console.log('data HERE:', data);
         this.setState({ bugs: data})
       })
   }
@@ -39,12 +39,38 @@ class App extends React.Component {
     this.setState({ showModal: false });
   };
 
+  addBug(newBug) {
+    console.log(newBug)
+    fetch('http://localhost:3000/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newBug)
+    })
+      .then( res => res.json())
+      .then( data => {
+        console.log(data);
+      })
+      .then( ()=> {
+        this.componentDidMount();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
+  }
+
   
   render() {
     return (
       <div>
         <button onClick={this.showModal}>Add Bug</button>
-        <Modal show={this.state.showModal} handleClose={this.hideModal}/>
+        <Modal 
+          show={this.state.showModal} 
+          handleClose={this.hideModal}
+          addBug={this.addBug}
+        />
         <table>
           <Nav filterHandler={this.filterHandler}/>
           {this.state.bugs ? 
