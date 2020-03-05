@@ -1,32 +1,55 @@
 import React from 'react'
 
-const Modal = ({ handleClose, show }) => {
+class Modal extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            bugDescription: '',
+            reportedBy: '',
+            assignedTo: '',
+            threatLevel: ''
+        };
+        this.handleChange = this.handleChange.bind(this);
+    }
 
-    return (
-      show ? 
-      <div className='modal'>
-        <section className="modal-main">
-          <table>
-            <tr>
-                <th>Description</th>
-                <th>Reported By</th>
-                <th>Assigned To</th>
-                <th>Threat Level</th>
-            </tr>
-            <tbody>
-                <tr className="bugTile">
-                <td><input type='text' id='description' placeholder='Description...'></input></td>
-                <td><input type='text' id='reporter' placeholder='Your name...'></input></td>
-                <td><input type='text' id='assignedTo' placeholder='Assigned to...'></input></td>
-                <td><input type='text' id='threatLevel' placeholder='Threat Level...'></input></td>
+   handleChange(e) {
+    e.preventDefault;
+    console.log([e.target.id]);
+    this.setState({
+        [e.target.id]: e.target.value
+    })
+   }
+
+  render() {
+      return (
+          this.props.show ? 
+          <div className='modal'>
+            <section className="modal-main">
+              <table>
+                <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Reported By</th>
+                    <th>Assigned To</th>
+                    <th>Threat Level</th>
                 </tr>
-            </tbody>
-            <button onClick={handleClose}>close</button>
-          </table>
-        </section>
-      </div>
-      : null
-    );
+                </thead>
+                <tbody>
+                    <tr className="bugTile">
+                    <td><input onChange={(e) => this.handleChange(e)} type='text' id='bugDescription' placeholder='Description...'></input></td>
+                    <td><input onChange={(e) => this.handleChange(e)} type='text' id='reportedBy' placeholder='Your name...'></input></td>
+                    <td><input onChange={(e) => this.handleChange(e)} type='text' id='assignedTo' placeholder='Assigned to...'></input></td>
+                    <td><input onChange={(e) => this.handleChange(e)} type='text' id='threatLevel' placeholder='Threat Level...'></input></td>
+                    </tr>
+                </tbody>
+              </table>
+              <button onClick={this.props.handleClose}>close</button>
+            </section>
+          </div>
+          : null
+      )
+  } 
+
 };
 
 export default Modal;

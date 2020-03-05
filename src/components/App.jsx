@@ -6,8 +6,8 @@ import Modal from './Modal.jsx';
 import '../styles/App.scss';
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       filter: 'None',
       bugs: null,
@@ -44,8 +44,7 @@ class App extends React.Component {
     return (
       <div>
         <button onClick={this.showModal}>Add Bug</button>
-        <Modal show={this.state.showModal} handleClose={this.hideModal}>
-        </Modal>
+        <Modal show={this.state.showModal} handleClose={this.hideModal}/>
         <table>
           <Nav filterHandler={this.filterHandler}/>
           {this.state.bugs ? 
