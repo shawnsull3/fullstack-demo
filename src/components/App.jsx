@@ -45,8 +45,6 @@ class App extends React.Component {
       <div>
         <button onClick={this.showModal}>Add Bug</button>
         <Modal show={this.state.showModal} handleClose={this.hideModal}>
-          <p>Modal</p>
-          <p>Data</p>
         </Modal>
         <table>
           <Nav filterHandler={this.filterHandler}/>
