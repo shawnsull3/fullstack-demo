@@ -48,17 +48,12 @@ class App extends React.Component {
       },
       body: JSON.stringify(newBug)
     })
-      .then( res => res.json())
-      .then( data => {
-        console.log(data);
-      })
-      .then( ()=> {
+      .then( () => {
         this.componentDidMount();
       })
       .catch((error) => {
         console.error('Error:', error);
       });
-
   }
 
   
